@@ -14,6 +14,7 @@ import hudson.views.ListViewColumn;
 import hudson.views.ListViewColumnDescriptor;
 import jenkins.model.ParameterizedJobMixIn;
 import net.sf.json.JSONObject;
+import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.StaplerRequest;
 
 import java.util.Map;
@@ -122,20 +123,27 @@ public class CronViewColumn extends ListViewColumn{
 		}
 		return type;
 	}
-	
-	
+
     @Extension
+    @Symbol("cronTrigger")
     public static final class DescriptorImpl extends ListViewColumnDescriptor {
         @Override
         public ListViewColumn newInstance(StaplerRequest req, JSONObject formData){
         	return new CronViewColumn();
         }
-        
-		@Override
+
+        @Override
+        public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
+            req.bindJSON(this, json);
+            save();
+            return true;
+        }
+
+        @Override
 		public String getDisplayName(){
 			return "CronTrigger";
 		}
-        
+
         @Override
         public boolean shownByDefault() {
             return false;
