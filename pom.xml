@@ -16,10 +16,26 @@
     <name>Cron Column Plugin</name>
 
     <properties>
-        <jenkins.version>2.375.4</jenkins.version>
+        <configuration-as-code.version>1775.v810dc950b_514</configuration-as-code.version>
+        <jenkins.version>2.414.1</jenkins.version>
         <spotbugs.effort>Max</spotbugs.effort>
         <spotbugs.threshold>Low</spotbugs.threshold>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.jenkins</groupId>
+            <artifactId>configuration-as-code</artifactId>
+            <version>${configuration-as-code.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jenkins.configuration-as-code</groupId>
+            <artifactId>test-harness</artifactId>
+            <version>${configuration-as-code.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <developers>
         <developer>
